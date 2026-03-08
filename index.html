@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ayaana Agarwal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #fdf7f0;
+      --warm-white: #fffbf6;
+      --terra:      #bf6b50;
+      --terra-lt:   #d98b72;
+      --sage:       #7b9e82;
+      --gold:       #c9963b;
+      --plum:       #7d5c7a;
+      --charcoal:   #26211e;
+      --muted:      #7a6e66;
+      --border:     rgba(191,107,80,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 4rem;
+      background: rgba(253,247,240,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; font-weight: 600;
+      color: var(--terra); text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--charcoal);
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--terra); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 7rem 4rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    /* Soft blobs */
+    .blob {
+      position: absolute; border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+      animation: morph 12s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    .blob-1 {
+      width: 52vw; height: 52vw; max-width: 640px; max-height: 640px;
+      top: -12%; right: -10%;
+      background: radial-gradient(circle at 38% 38%, #f5c9b5 0%, #edd9c8 50%, transparent 80%);
+      opacity: 0.55;
+    }
+    .blob-2 {
+      width: 35vw; height: 35vw; max-width: 420px; max-height: 420px;
+      bottom: -18%; left: -6%;
+      background: radial-gradient(circle at 62% 62%, #b8cebb 0%, #d5e9d7 65%, transparent 88%);
+      opacity: 0.38;
+      animation-direction: alternate-reverse; animation-duration: 15s;
+    }
+    .blob-3 {
+      width: 20vw; height: 20vw; max-width: 240px; max-height: 240px;
+      top: 35%; right: 18%;
+      background: radial-gradient(circle, #d4b8d1 0%, transparent 70%);
+      opacity: 0.25;
+      animation-duration: 9s;
+    }
+    @keyframes morph {
+      0%   { border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%; transform: rotate(0deg) scale(1); }
+      50%  { border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%; transform: rotate(5deg) scale(1.04); }
+      100% { border-radius: 55% 45% 60% 40% / 40% 60% 45% 55%; transform: rotate(-4deg) scale(0.97); }
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 700px; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(191,107,80,0.1);
+      border: 1px solid rgba(191,107,80,0.25);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 1.6rem;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-tag .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--terra);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.5;transform:scale(0.7);} }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 6.5vw, 5.8rem);
+      line-height: 1.05; font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.3rem;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+    .hero-name em { font-style: italic; color: var(--terra); }
+
+    .hero-school {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-style: italic;
+      color: var(--muted); font-weight: 400;
+      margin-bottom: 1.6rem;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem; color: var(--muted);
+      line-height: 1.85; font-weight: 300;
+      max-width: 520px; margin-bottom: 2.4rem;
+      animation: fadeUp 0.9s 0.3s ease both;
+    }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.9s 0.4s ease both;
+    }
+    .stat { display: flex; flex-direction: column; gap: 0.2rem; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 700; line-height: 1;
+      color: var(--terra);
+    }
+    .stat-label { font-size: 0.75rem; color: var(--muted); font-weight: 400; letter-spacing: 0.04em; }
+    .stat-divider { width: 1px; background: var(--border); }
+
+    .hero-ctas { display: flex; gap: 1rem; animation: fadeUp 0.9s 0.5s ease both; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--terra); color: #fff;
+      padding: 0.85rem 1.9rem; border-radius: 50px;
+      text-decoration: none; font-size: 0.88rem; font-weight: 500;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 18px rgba(191,107,80,0.3);
+    }
+    .btn-primary:hover { background: var(--terra-lt); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(191,107,80,0.4); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1.5px solid var(--border); color: var(--charcoal);
+      padding: 0.85rem 1.9rem; border-radius: 50px;
+      text-decoration: none; font-size: 0.88rem; font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--terra); color: var(--terra); }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(28px);} to{opacity:1;transform:translateY(0);} }
+
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: var(--muted); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      z-index: 2;
+    }
+    .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--terra), transparent); animation: sp 2s ease-in-out infinite; }
+    @keyframes sp { 0%,100%{opacity:.35;} 50%{opacity:1;} }
+
+    /* ── SECTIONS ── */
+    section { padding: 7rem 4rem; }
+
+    .section-eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--terra);
+      font-weight: 600; margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    .section-eyebrow::after { content:''; flex:1; max-width:44px; height:1.5px; background:var(--terra); opacity:.5; }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700; line-height: 1.18;
+      margin-bottom: 1.4rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--warm-white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: center; max-width: 1100px; }
+
+    .about-visual { position: relative; }
+    .about-blob-wrap {
+      width: 100%; aspect-ratio: 4/5;
+      border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%;
+      background: linear-gradient(145deg, #f5c4af 0%, #edd9ca 40%, #c5dcc6 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem;
+      box-shadow: 0 16px 50px rgba(191,107,80,0.14);
+      animation: morph 10s ease-in-out infinite alternate;
+    }
+    .about-badge {
+      position: absolute; bottom: 8%; right: -6%;
+      background: var(--charcoal); color: #fff;
+      padding: 0.75rem 1.1rem; border-radius: 14px;
+      font-size: 0.8rem; line-height: 1.5;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+    }
+    .about-badge strong { display: block; color: var(--gold); font-size: 1rem; }
+    .about-badge2 {
+      position: absolute; top: 8%; left: -8%;
+      background: var(--terra); color: #fff;
+      padding: 0.65rem 1rem; border-radius: 12px;
+      font-size: 0.78rem; font-weight: 500;
+      box-shadow: 0 6px 18px rgba(191,107,80,0.35);
+    }
+
+    .about-body p {
+      font-size: 1.02rem; color: var(--muted);
+      line-height: 1.9; font-weight: 300;
+      margin-bottom: 1.1rem;
+    }
+    .about-body strong { color: var(--charcoal); font-weight: 500; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.8rem; }
+    .tag {
+      padding: 0.42rem 1.05rem; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 500; border: 1.5px solid;
+      transition: background 0.2s, color 0.2s;
+    }
+    .tag.t { border-color: var(--terra); color: var(--terra); }
+    .tag.t:hover { background: var(--terra); color: #fff; }
+    .tag.s { border-color: var(--sage); color: var(--sage); }
+    .tag.s:hover { background: var(--sage); color: #fff; }
+    .tag.g { border-color: var(--gold); color: #a87a2a; }
+    .tag.g:hover { background: var(--gold); color: #fff; }
+    .tag.p { border-color: var(--plum); color: var(--plum); }
+    .tag.p:hover { background: var(--plum); color: #fff; }
+
+    /* ── HIGHLIGHTS / STATS BANNER ── */
+    .highlights {
+      background: var(--charcoal);
+      padding: 3.5rem 4rem;
+      display: flex; justify-content: center;
+    }
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem; max-width: 1100px; width: 100%;
+    }
+    .hl-card {
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      padding: 1.5rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      transition: background 0.25s;
+    }
+    .hl-card:hover { background: rgba(255,255,255,0.08); }
+    .hl-icon { font-size: 1.8rem; margin-bottom: 0.7rem; }
+    .hl-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 700; color: var(--terra-lt); line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .hl-label { font-size: 0.8rem; color: rgba(253,247,240,0.5); font-weight: 400; line-height: 1.4; }
+
+    /* ── WORK / PROJECTS ── */
+    #portfolio { background: var(--cream); }
+    .portfolio-intro { max-width: 600px; margin-bottom: 3.5rem; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.8rem; max-width: 1100px;
+    }
+
+    .pcard {
+      background: var(--warm-white);
+      border: 1.5px solid var(--border);
+      border-radius: 22px;
+      padding: 2rem;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .pcard::before {
+      content: ''; position: absolute; inset: 0 0 auto 0; height: 3px;
+      background: linear-gradient(90deg, var(--terra), var(--gold));
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .pcard:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(191,107,80,0.11); border-color: rgba(191,107,80,0.32); }
+    .pcard:hover::before { opacity: 1; }
+
+    .pcard-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.2rem; }
+    .pcard-emoji { font-size: 2.2rem; }
+    .pcard-badge {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+    }
+    .badge-green { background: rgba(123,158,130,0.12); color: var(--sage); }
+    .badge-terra { background: rgba(191,107,80,0.1); color: var(--terra); }
+    .badge-gold  { background: rgba(201,150,59,0.12); color: #a87a2a; }
+    .badge-plum  { background: rgba(125,92,122,0.12); color: var(--plum); }
+
+    .pcard h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 700; margin-bottom: 0.6rem;
+    }
+    .pcard p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; font-weight: 300; }
+    .pcard-footer { margin-top: 1.4rem; }
+    .pcard-meta {
+      font-size: 0.78rem; color: var(--muted); font-weight: 400;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .pcard-meta::before { content: '◆'; font-size: 0.5rem; color: var(--terra); }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--warm-white); }
+    .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1100px; }
+
+    .exp-card {
+      padding: 1.8rem 2rem;
+      border-radius: 18px;
+      border: 1.5px solid var(--border);
+      background: var(--cream);
+      transition: box-shadow 0.3s;
+    }
+    .exp-card:hover { box-shadow: 0 10px 30px rgba(191,107,80,0.09); }
+    .exp-top { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 0.9rem; }
+    .exp-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      background: rgba(191,107,80,0.1);
+    }
+    .exp-org { font-size: 0.75rem; color: var(--terra); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.15rem; }
+    .exp-role { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 700; }
+    .exp-date { margin-left: auto; font-size: 0.75rem; color: var(--muted); white-space: nowrap; margin-top: 0.2rem; }
+    .exp-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.75; font-weight: 300; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--charcoal); color: var(--cream);
+      position: relative; overflow: hidden;
+    }
+    .contact-blob {
+      position: absolute; top: -25%; right: -8%;
+      width: 45vw; height: 45vw; max-width: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(191,107,80,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #contact .section-eyebrow { color: var(--terra-lt); }
+    #contact .section-eyebrow::after { background: var(--terra-lt); }
+    #contact .section-title { color: var(--warm-white); }
+
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; max-width: 1000px; position: relative; z-index: 1; }
+
+    .contact-intro p { font-size: 1rem; line-height: 1.85; color: rgba(253,247,240,0.6); font-weight: 300; margin-bottom: 2rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.9rem; }
+    .contact-links a {
+      display: flex; align-items: center; gap: 0.9rem;
+      color: rgba(253,247,240,0.65); text-decoration: none;
+      font-size: 0.92rem; transition: color 0.2s;
+    }
+    .contact-links a:hover { color: var(--terra-lt); }
+    .cl-icon {
+      width: 38px; height: 38px; border-radius: 11px; flex-shrink: 0;
+      background: rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; transition: background 0.2s;
+    }
+    .contact-links a:hover .cl-icon { background: rgba(191,107,80,0.25); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1.05rem; }
+    .fg { display: flex; flex-direction: column; gap: 0.4rem; }
+    .fg label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(253,247,240,0.4); font-weight: 500; }
+    .fg input, .fg textarea {
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 13px; padding: 0.9rem 1.1rem;
+      color: var(--cream); font-family: 'Jost', sans-serif;
+      font-size: 0.93rem; outline: none; resize: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color: rgba(253,247,240,0.22); }
+    .fg input:focus, .fg textarea:focus { border-color: var(--terra); background: rgba(255,255,255,0.09); }
+    .fg textarea { height: 130px; }
+
+    .btn-send {
+      align-self: flex-start;
+      background: var(--terra); color: #fff;
+      border: none; padding: 0.9rem 2rem; border-radius: 50px;
+      font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 500;
+      cursor: pointer; transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 16px rgba(191,107,80,0.32); margin-top: 0.2rem;
+    }
+    .btn-send:hover { background: var(--terra-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(191,107,80,0.42); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1614; text-align: center;
+      padding: 1.8rem; font-size: 0.8rem;
+      color: rgba(253,247,240,0.3);
+    }
+    footer a { color: var(--terra); text-decoration: none; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      section { padding: 5rem 1.5rem; }
+      .hero { padding: 5.5rem 1.5rem 4rem; }
+      .about-grid, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .highlights-grid { grid-template-columns: repeat(2,1fr); }
+      .hero-stats { gap: 1.5rem; }
+      .about-badge2 { display: none; }
+    }
+    @media(max-width: 500px) {
+      .highlights-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.72rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Ayaana Agarwal</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      The Shri Ram School, Aravali
+    </div>
+    <h1 class="hero-name">Hi, I'm<br><em>Ayaana.</em></h1>
+    <p class="hero-school">Student · Innovator · Changemaker</p>
+    <p class="hero-desc">
+      I study Economics &amp; Psychology — fascinated by how the world works and how people make decisions. I build things, lead initiatives, and find ways to make a difference.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">🇺🇳</span>
+        <span class="stat-label">Presented at UN Geneva</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">400+</span>
+        <span class="stat-label">App downloads</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">$6.1K</span>
+        <span class="stat-label">Raised for education</span>
+      </div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#portfolio" class="btn-primary">See My Work →</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- HIGHLIGHTS BANNER -->
+<div class="highlights">
+  <div class="highlights-grid">
+    <div class="hl-card">
+      <div class="hl-icon">🏆</div>
+      <div class="hl-num">2024</div>
+      <div class="hl-label">Innovator of the Year</div>
+    </div>
+    <div class="hl-card">
+      <div class="hl-icon">📚</div>
+      <div class="hl-num">350+</div>
+      <div class="hl-label">First-generation learners supported</div>
+    </div>
+    <div class="hl-card">
+      <div class="hl-icon">🌍</div>
+      <div class="hl-num">42</div>
+      <div class="hl-label">Donors across 3 countries</div>
+    </div>
+    <div class="hl-card">
+      <div class="hl-icon">🌱</div>
+      <div class="hl-num">800kg</div>
+      <div class="hl-label">Daily waste diverted from landfills</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-blob-wrap">🌿</div>
+      <div class="about-badge2">✦ Innovator of the Year 2024</div>
+      <div class="about-badge">
+        <strong>TSRS Aravali</strong>
+        Secretary, School Council
+      </div>
+    </div>
+    <div class="about-body reveal">
+      <p class="section-eyebrow">About Me</p>
+      <h2 class="section-title">Curious mind.<br>Determined heart.</h2>
+      <p>
+        I'm Ayaana — a student at <strong>The Shri Ram School, Aravali</strong> with a deep love for Economics and Psychology. I'm fascinated by why people behave the way they do and how those choices ripple through societies and markets.
+      </p>
+      <p>
+        Outside the classroom, I build things that matter. From a <strong>soil-testing device presented at the United Nations in Geneva</strong>, to an app that connects 25,000 villagers to their local leaders — I believe technology and empathy can solve real problems.
+      </p>
+      <p>
+        I've had the privilege of learning at Harvard, BITS Goa, and the Wadhwani Foundation, and I volunteer in education and waste management. When I'm not studying or building, you'll find me singing, painting, or on the badminton court.
+      </p>
+      <div class="tags">
+        <span class="tag t">Behavioural Economics</span>
+        <span class="tag p">Cognitive Psychology</span>
+        <span class="tag s">Social Impact</span>
+        <span class="tag g">Tech for Good</span>
+        <span class="tag t">Leadership</span>
+        <span class="tag s">Creative Writing</span>
+        <span class="tag p">Painting &amp; Singing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-intro reveal">
+    <p class="section-eyebrow">Work &amp; Projects</p>
+    <h2 class="section-title">Things I've built<br>&amp; worked on.</h2>
+  </div>
+  <div class="projects-grid">
+    <div class="pcard reveal">
+      <div class="pcard-top">
+        <span class="pcard-emoji">🌱</span>
+        <span class="pcard-badge badge-green">Innovation</span>
+      </div>
+      <h3>Bhoomi — Soil Testing Device</h3>
+      <p>Designed and built a device that measures exactly how much compost a soil sample needs, making sustainable farming more accessible. Presented at the <strong>United Nations, Geneva, Switzerland</strong>.</p>
+      <div class="pcard-footer">
+        <p class="pcard-meta">Dec 2022 – Present</p>
+      </div>
+    </div>
+
+    <div class="pcard reveal">
+      <div class="pcard-top">
+        <span class="pcard-emoji">📱</span>
+        <span class="pcard-badge badge-terra">Social Tech</span>
+      </div>
+      <h3>Vikaas App</h3>
+      <p>Co-created an app connecting 25,000+ villagers across 25 villages in Uttarakhand to 11 Pradhans and 13 IIT Delhi experts. <strong>400+ downloads</strong> on Google Play Store.</p>
+      <div class="pcard-footer">
+        <p class="pcard-meta">Dec 2022 – Present · Live on Google Play</p>
+      </div>
+    </div>
+
+    <div class="pcard reveal">
+      <div class="pcard-top">
+        <span class="pcard-emoji">📚</span>
+        <span class="pcard-badge badge-gold">Education</span>
+      </div>
+      <h3>OPG Memorial School Initiative</h3>
+      <p>Raised <strong>$6,100 from 42 donors</strong> to return 100 children to school during COVID. Donated 1,000+ books to the school library and created a financial literacy programme for students' families.</p>
+      <div class="pcard-footer">
+        <p class="pcard-meta">May 2021 – Present · 350+ first-generation learners</p>
+      </div>
+    </div>
+
+    <div class="pcard reveal">
+      <div class="pcard-top">
+        <span class="pcard-emoji">🗑️</span>
+        <span class="pcard-badge badge-green">Environment</span>
+      </div>
+      <h3>Waste Management, The Close South</h3>
+      <p>Led a community waste segregation programme through door-to-door education and townhalls. Reduced landfill waste from <strong>1,000 kg/day to 800 kg/day</strong> in the residential colony.</p>
+      <div class="pcard-footer">
+        <p class="pcard-meta">May 2019 – Present</p>
+      </div>
+    </div>
+
+    <div class="pcard reveal">
+      <div class="pcard-top">
+        <span class="pcard-emoji">🤖</span>
+        <span class="pcard-badge badge-plum">AI &amp; Policy</span>
+      </div>
+      <h3>Wadhwani Foundation — UCEP</h3>
+      <p>Interned on a national project using GenAI to improve citizen-government engagement. Analysed 400+ field recordings and trained field agents for better civic participation.</p>
+      <div class="pcard-footer">
+        <p class="pcard-meta">June 2025</p>
+      </div>
+    </div>
+
+    <div class="pcard reveal">
+      <div class="pcard-top">
+        <span class="pcard-emoji">🌾</span>
+        <span class="pcard-badge badge-terra">Entrepreneurship</span>
+      </div>
+      <h3>AgriTech Startup Concept — BITS Goa</h3>
+      <p>Developed a concept note for a farmer-focused agricultural platform at the Young Entrepreneurs Bootcamp, providing a one-stop resource for selling produce, market pricing, and expert guidance.</p>
+      <div class="pcard-footer">
+        <p class="pcard-meta">June 2024 · BITS Goa Bootcamp</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-eyebrow reveal">Leadership &amp; Programs</p>
+  <h2 class="section-title reveal">Where I've learned<br>&amp; led.</h2>
+  <div class="exp-grid" style="margin-top:2.5rem;">
+
+    <div class="exp-card reveal">
+      <div class="exp-top">
+        <div class="exp-icon">🏛️</div>
+        <div>
+          <p class="exp-org">Harvard</p>
+          <p class="exp-role">Harvard Leadership Program</p>
+        </div>
+        <span class="exp-date">June 2023</span>
+      </div>
+      <p class="exp-desc">A 1-week intensive programme mentoring future leaders using expertise from Harvard alumni. Created a project prototype to drive skilling opportunities to underemployed communities.</p>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-top">
+        <div class="exp-icon">🚀</div>
+        <div>
+          <p class="exp-org">BITS Goa</p>
+          <p class="exp-role">Young Entrepreneurs Bootcamp</p>
+        </div>
+        <span class="exp-date">June 2024</span>
+      </div>
+      <p class="exp-desc">Residential entrepreneurship programme at BITS Goa. Presented an agricultural startup concept to address the information and market access gap faced by Indian farmers.</p>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-top">
+        <div class="exp-icon">👩‍💼</div>
+        <div>
+          <p class="exp-org">School Council</p>
+          <p class="exp-role">Secretary, Social Initiative</p>
+        </div>
+        <span class="exp-date">Apr 2025 – Present</span>
+      </div>
+      <p class="exp-desc">Member of the School Student Council leading social initiatives, driving community engagement and student-led change across school and local communities.</p>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-top">
+        <div class="exp-icon">🌿</div>
+        <div>
+          <p class="exp-org">School Council</p>
+          <p class="exp-role">Environment Representative</p>
+        </div>
+        <span class="exp-date">Apr 2024 – Mar 2025</span>
+      </div>
+      <p class="exp-desc">Selected as the sole representative for Grade 10 (out of 180 students). Mentored environment reps from Grades 6–9 and guided environmental projects across the school.</p>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-top">
+        <div class="exp-icon">💡</div>
+        <div>
+          <p class="exp-org">Wonder Girls</p>
+          <p class="exp-role">Leadership Cohort</p>
+        </div>
+        <span class="exp-date">June 2022</span>
+      </div>
+      <p class="exp-desc">Completed a 75-hour digital leadership programme for high-achieving girls. Conducted a capstone project interviewing aspiring leaders about their journeys and challenges.</p>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-top">
+        <div class="exp-icon">🎨</div>
+        <div>
+          <p class="exp-org">TCS Cultural Committee</p>
+          <p class="exp-role">Art Competition — 2nd &amp; 3rd Place</p>
+        </div>
+        <span class="exp-date">2021 &amp; 2023</span>
+      </div>
+      <p class="exp-desc">Placed third in 2021 and second in 2023 in art competitions held by the TCS Cultural Committee, showcasing a consistent creative streak alongside academic and leadership pursuits.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-blob"></div>
+  <div class="contact-layout">
+    <div class="reveal">
+      <p class="section-eyebrow">Contact</p>
+      <h2 class="section-title">Let's connect.</h2>
+      <p>Whether it's a collaboration, a question, or just a good conversation about economics and impact — I'd love to hear from you.</p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/ayaana-agarwal/" target="_blank">
+          <span class="cl-icon">🔗</span>
+          linkedin.com/in/ayaana-agarwal
+        </a>
+        <a href="https://www.tsrs.org" target="_blank">
+          <span class="cl-icon">🏫</span>
+          The Shri Ram School, Aravali
+        </a>
+      </div>
+    </div>
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="fg">
+        <label>Your Name</label>
+        <input type="text" placeholder="Jane Smith" required/>
+      </div>
+      <div class="fg">
+        <label>Email</label>
+        <input type="email" placeholder="jane@example.com" required/>
+      </div>
+      <div class="fg">
+        <label>Message</label>
+        <textarea placeholder="What's on your mind?" required></textarea>
+      </div>
+      <button type="submit" class="btn-send">Send Message ✦</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>Made with ♥ &nbsp;·&nbsp; <a href="#">Ayaana Agarwal</a> &nbsp;·&nbsp; 2025</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i * 70);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(el => io.observe(el));
+
+  // Stagger pcard delays
+  document.querySelectorAll('.pcard, .exp-card').forEach((c, i) => {
+    c.style.transitionDelay = (i % 3 * 0.1) + 's';
+  });
+
+  // Form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-send');
+    btn.textContent = 'Sent! ✓';
+    btn.style.background = '#7a9e7e';
+    setTimeout(() => { btn.textContent = 'Send Message ✦'; btn.style.background = ''; }, 3000);
+  }
+</script>
+</body>
+</html>
